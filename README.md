@@ -1,34 +1,136 @@
-# Reserva tu Cancha - Backend
+# Task Manager API
 
-API Node.js/Express para el TP final de Reserva de Canchas.
+Backend del trabajo final Full-Stack desarrollado con **Node.js + Express**.
 
-Requisitos básicos:
-- Node.js + Express
-- MongoDB (Mongoose)
-- Autenticación con bcrypt + JWT
-- Verificación por correo con nodemailer
-- Arquitectura: routes → controllers → services → repositories
+## Tecnologías
 
-Instalación rápida:
+* Node.js
+* Express
+* SQLite
+* JWT Authentication
+* bcrypt
+* nodemailer
+* dotenv
 
-1. Copiar `.env.example` a `.env` y completar variables (MONGO_URI, EMAIL_USER, EMAIL_PASS, JWT_SECRET, FRONTEND_URL)
-2. Instalar dependencias:
+## Instalación
 
-```bash
+Clonar el repositorio:
+
+```
+git clone https://github.com/lucianoescalante614-code/taskmanager-backend.git
+```
+
+Entrar en la carpeta:
+
+```
+cd taskmanager-backend
+```
+
+Instalar dependencias:
+
+```
 npm install
 ```
 
-3. Ejecutar en desarrollo:
+Crear archivo `.env` basado en `.env.example`.
 
-```bash
-npm run dev
+Iniciar el servidor:
+
+```
+node src/index.js
 ```
 
-Endpoints importantes:
-- POST /api/auth/register
-- GET /api/auth/verify?token=...
-- POST /api/auth/login
+Servidor disponible en:
 
-Notas:
-- Uso Gmail para envío de correos en desarrollo (ver `.env.example`). Para producción recomendamos usar un servicio como SendGrid o configuraciones SMTP seguras.
-- Postman collection en `postman_collection.json`.
+```
+http://localhost:4000
+```
+
+## API Deployada
+
+https://taskmanager-api-tjqj.onrender.com
+
+---
+
+# Endpoints
+
+## Auth
+
+### Registro
+
+POST `/api/auth/register`
+
+Body:
+
+```
+{
+"name": "Luciano",
+"email": "test@email.com",
+"password": "123456"
+}
+```
+
+---
+
+### Login
+
+POST `/api/auth/login`
+
+Body:
+
+```
+{
+"email": "test@email.com",
+"password": "123456"
+}
+```
+
+Devuelve JWT.
+
+---
+
+## Courts
+
+### Obtener canchas
+
+GET `/api/courts`
+
+---
+
+### Crear cancha
+
+POST `/api/courts`
+
+Requiere token JWT.
+
+---
+
+### Actualizar cancha
+
+PUT `/api/courts/:id`
+
+---
+
+### Eliminar cancha
+
+DELETE `/api/courts/:id`
+
+---
+
+## Reservations
+
+### Obtener reservas
+
+GET `/api/reservations`
+
+---
+
+### Crear reserva
+
+POST `/api/reservations`
+
+---
+
+### Eliminar reserva
+
+DELETE `/api/reservations/:id`
